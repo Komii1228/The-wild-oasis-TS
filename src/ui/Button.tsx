@@ -1,5 +1,15 @@
 import styled, { css } from 'styled-components';
 
+type ButtonSizes = {
+    $size?: 'small' | 'medium' | 'large';
+};
+
+type ButtonVariants = {
+    $variant?: 'primary' | 'secondary' | 'danger';
+};
+
+type ButtonStyleProps = ButtonSizes & ButtonVariants;
+
 const sizes = {
     small: css`
         font-size: 1.2rem;
@@ -48,6 +58,20 @@ const variations = {
     `,
 };
 
-const Button = styled.button``;
+const Button = styled.button<ButtonStyleProps>`
+    border: none;
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow-sm);
+
+    ${(props) => {
+        const size = sizes[props.$size ?? 'medium'];
+        const variant = variations[props.$variant ?? 'primary'];
+
+        return css`
+            ${size}
+            ${variant}
+        `;
+    }}
+`;
 
 export default Button;
