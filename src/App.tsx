@@ -1,31 +1,57 @@
-import styled from 'styled-components';
+import { createBrowserRouter, RouterProvider } from 'react-router';
+import GlobalStyles from './styles/GlobalStyles';
+import Dashboard from './pages/Dashboard';
+import Cabins from './pages/Cabins';
+import Account from './pages/Account';
+import Login from './pages/Login';
+import PageNotFound from './pages/PageNotFound';
+import Settings from './pages/Settings';
+import AppLayout from './ui/AppLayout';
+import Users from './pages/Users';
 
-const H1 = styled.h1`
-    font-size: 30px;
-    font-weight: 600;
-`;
-
-const Button = styled.button`
-    font-size: 1.4rem;
-    padding: 1.2rem 1.6rem;
-    font-weight: 500;
-    border: none;
-    border-radius: 7px;
-    background-color: purple;
-    color: white;
-`;
-
-const StyledApp = styled.div`
-    background-color: red;
-    padding: 20px;
-`;
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <AppLayout />,
+        children: [
+            {
+                index: true,
+                element: <Dashboard />,
+            },
+            {
+                path: 'cabins',
+                element: <Cabins />,
+            },
+            {
+                path: 'Users',
+                element: <Users />,
+            },
+            {
+                path: 'settings',
+                element: <Settings />,
+            },
+            {
+                path: 'account',
+                element: <Account />,
+            },
+            {
+                path: 'login',
+                element: <Login />,
+            },
+        ],
+    },
+    {
+        path: '*',
+        element: <PageNotFound />,
+    },
+]);
 
 function App() {
     return (
-        <StyledApp>
-            <H1>The Wild Oasis</H1>
-            <Button onClick={() => alert('Check in')}>Check in</Button>
-        </StyledApp>
+        <>
+            <GlobalStyles />
+            <RouterProvider router={router} />
+        </>
     );
 }
 
