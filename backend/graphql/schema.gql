@@ -1,9 +1,0 @@
-type Cabin {
-  id: String!
-  name: String
-}
-
-type Query {
-  hello: String
-  getAllCabins: [Cabin!]!
-}
