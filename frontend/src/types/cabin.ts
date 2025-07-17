@@ -4,6 +4,7 @@ export type Cabin = {
     image: string;
     max_capacity: number;
     regular_price: number;
+    description?: string;
     discount: number;
     discountType: 'price' | 'percentage';
 };
